@@ -1,11 +1,16 @@
 <template lang="">
-    <div>
-        <span>{{ currentNumber}}</span>
-        <span>{{ contactName }}</span>
-    </div>
-    <div>
-        <KeypadKey @click="keyupKey(i-1)" v-for="i in 10" :key="i" :value="i-1"/>
-        <button @click="callNumber()">Appeler</button>
+    <div class="keypad">
+        <div class="number-name">
+            <p>{{ currentNumber}}</p>
+            <p>{{ contactName }}</p>
+        </div>
+        <div class="key-pad">
+            <div class="key-div">
+                <KeypadKey @click="keyupKey(i)" v-for="i in 9" :key="i" :value="i"/>
+                <KeypadKey @click="keyupKey(0)" :value="0"/>
+            </div>
+            <button class="submit-btn" @click="callNumber()"><i class="fa-solid fa-phone-volume"></i></button>
+        </div>
     </div>
 </template>
 <script>
@@ -66,5 +71,71 @@ export default {
 }
 </script>
 <style scoped>
-    
+
+    .keypad {
+        margin: 10vh auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .number-name {
+        font-weight: bold;
+        font-size: 20px;
+        width: 250px;
+        margin: 10px auto;
+        color: orange;
+        height: 50px;
+    }
+
+    p {
+        margin: 0;
+    }
+    .key-div {
+        display: flex;
+        flex-wrap: wrap;
+        width: 200px;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .key-pad {
+        border: 2px solid orange;
+        padding: 3em 2em;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 250px;
+        margin: auto;
+    }
+    .submit-btn {
+        border: 2px solid white;
+        background: orange;
+        border-radius: 50px;
+        width: 150px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto
+    }
+
+    .submit-btn:hover {
+        background: white;
+        border: 2px solid orange;
+        cursor: pointer;
+    }
+
+    .submit-btn:hover i {
+        color: orange;
+        cursor: pointer;
+    }
+
+    i {
+        font-size: 25px;
+        color: white;
+    }
 </style>

@@ -51,21 +51,26 @@ export default {
         },
 
         callNumber() {
-            let currentDate = new Date()
-            let currentDay = currentDate.getDate()
-            let theMonth = currentDate.getMonth()
-            let currentMonth
-            theMonth < 10 ? currentMonth = '0' + (theMonth + 1) : currentMonth = theMonth
-            let currentHour = currentDate.getHours()
-            let currentMinute = currentDate.getMinutes() 
+            if (this.currentNumber.length != 0) {
+                let currentDate = new Date()
+                let currentDay = currentDate.getDate()
+                let theMonth = currentDate.getMonth()
+                let currentMonth
+                theMonth < 10 ? currentMonth = '0' + (theMonth + 1) : currentMonth = theMonth
+                let currentHour = currentDate.getHours()
+                let currentMinute = currentDate.getMinutes() 
 
-            this.currentCall = {
-                name: this.contactName,
-                number: this.currentNumber,
-                date: currentDay + '/' + currentMonth + ' ' + currentHour + ':' + currentMinute
+                this.currentCall = {
+                    name: this.contactName,
+                    number: this.currentNumber,
+                    date: currentDay + '/' + currentMonth + ' ' + currentHour + ':' + currentMinute
+                }
+                this.$store.commit('addCall', this.currentCall)
+                this.$router.push('/history')
+            } else {
+                alert("Faut entrer un numéro chakal")
+                return
             }
-            this.$store.commit('addCall', this.currentCall)
-            this.$router.push('/history')
         }
     }
 }

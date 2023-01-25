@@ -1,4 +1,5 @@
-# rendu
+# Phone App using Vue.Js
+A phone application using VueJs containing the main features of our smartphone applications
 
 ## Project setup
 ```
